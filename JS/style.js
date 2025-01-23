@@ -114,3 +114,30 @@ document.addEventListener("DOMContentLoaded", () => {
 		  img.src = src;
 	  });
   }
+
+  /*Color Change on click slider*/
+  $(document).ready(function () {
+    let defaultColor = "#0000ff";
+    let $colors = $("#colors");
+
+    $colors.val(defaultColor);
+    $colors.on("input change", updateAll);
+    $colors.select();
+
+    function updateFirst(event) {
+        let $p = $("p").first();
+        let $img = $("img").first();
+        if ($p.length) {
+            $p.css("color", event.target.value);
+        }
+        if ($img.length) {
+            $img.css("background-color", event.target.value);
+        }
+    }
+
+    function updateAll(event) {
+       // $("p").css("color", event.target.value);
+		$("img").css("background-color", event.target.value);
+		$("svg path").attr("fill", event.target.value);
+    }
+});
